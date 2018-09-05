@@ -113,14 +113,26 @@ detect_mac80211() {
 			set wireless.radio${devidx}.hwmode=11${mode_band}
 			${dev_id}
 			${ht_capab}
-			set wireless.radio${devidx}.disabled=1
+			set wireless.radio${devidx}.disabled=0
 
-			set wireless.default_radio${devidx}=wifi-iface
-			set wireless.default_radio${devidx}.device=radio${devidx}
-			set wireless.default_radio${devidx}.network=lan
-			set wireless.default_radio${devidx}.mode=ap
-			set wireless.default_radio${devidx}.ssid=OpenWrt
-			set wireless.default_radio${devidx}.encryption=none
+			set wireless.ap=wifi-iface
+			set wireless.ap.device=radio${devidx}
+			set wireless.ap.network=lan
+			set wireless.ap.mode=ap
+			set wireless.ap.ifname=ra0
+			set wireless.ap.ssid=Ultraiot_$(cat /sys/class/net/eth0/address|awk -F ":" '{print $4""$5""$6}'| tr a-z A-Z)
+			set wireless.ap.encryption=none
+			
+			set wireless.sta=wifi-iface
+			set wireless.sta.device=radio${devidx}
+			set wireless.sta.network=wwan
+			set wireless.sta.mode=sta
+			set wireless.sta.ifname=apcli0
+			set wireless.sta.disabled=1
+			set wireless.sta.ssid=UplinkAp
+			set wireless.sta.key=SecretKey
+			set wireless.sta.encryption=none
+			
 EOF
 		uci -q commit wireless
 
