@@ -82,17 +82,18 @@ generate_network() {
 	EOF
 
 	[ -n "$macaddr" ] && uci -q batch <<-EOF
-		delete network.$1_dev
-		set network.$1_dev='device'
-		set network.$1_dev.name='$ifname'
-		set network.$1_dev.macaddr='$macaddr'
+		#delete network.$1_dev
+		#set network.$1_dev='device'
+		#set network.$1_dev.name='$ifname'
+		set network.$1.macaddr='$macaddr'
+		set network.$1.force_link='1'
 	EOF
 
 	case "$protocol" in
 		static)
 			local ipad
 			case "$1" in
-				lan) ipad=${ipaddr:-"192.168.1.1"} ;;
+				lan) ipad=${ipaddr:-"192.168.121.1"} ;;
 				*) ipad=${ipaddr:-"192.168.$((addr_offset++)).1"} ;;
 			esac
 
@@ -116,6 +117,10 @@ generate_network() {
 				set network.${1}6='interface'
 				set network.${1}6.ifname='$ifname'
 				set network.${1}6.proto='dhcpv6'
+
+				set network.wwan='interface'
+				set network.wwan.ifname='apcli0'
+				set network.wwan.proto='dhcp'
 			EOF
 		;;
 
