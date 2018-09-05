@@ -312,3 +312,10 @@ define Device/zbtlink_zbt-we1226
   DEVICE_TITLE := ZBTlink ZBT-WE1226
 endef
 TARGET_DEVICES += zbtlink_zbt-we1226
+
+define Device/UltraIot-PR1
+  DTS := UltraIot-PR1
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  DEVICE_TITLE := ultraiot mt76x8
+endef
+TARGET_DEVICES += UltraIot-PR1

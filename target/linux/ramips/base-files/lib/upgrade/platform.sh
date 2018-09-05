@@ -224,6 +224,7 @@ platform_check_image() {
 	zbt-wg3526-16M|\
 	zbt-wg3526-32M|\
 	zbt-wr8305rt|\
+	UltraIot-PR1|\
 	zorlik,zl5900v2|\
 	zte-q7|\
 	youku-yk1)

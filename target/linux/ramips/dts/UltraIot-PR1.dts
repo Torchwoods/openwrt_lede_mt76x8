@@ -1,0 +1,76 @@
+/dts-v1/;
+
+#include "UltraIot-PR1.dtsi"
+
+/ {
+	compatible = "mediatek,UltraIot-PR1", "mediatek,mt7628an-soc";
+	model = "UltraIot-PR1";
+
+	gpio-leds {
+		compatible = "gpio-leds";
+
+		system {
+			label = "mediatek:green:system";
+			gpios = <&gpio1 5 1>;
+			default-state = "off";
+		};
+
+		wifi {
+			label = "mediatek:green:wifi";
+			gpios = <&gpio1 7 1>;
+			default-state = "off";
+		};
+
+		wan {
+			label = "mediatek:green:wan";
+			gpios = <&gpio1 11 1>;
+			default-state = "off";
+		};
+
+		lan1 {
+			label = "mediatek:green:lan_1";
+			gpios = <&gpio1 10 1>;
+			default-state = "off";
+		};
+
+		lan2 {
+			label = "mediatek:green:lan_2";
+			gpios = <&gpio1 8 1>;
+			default-state = "off";
+		};
+	}; 
+	
+	gpio-keys-polled {
+		compatible = "gpio-keys-polled";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		poll-interval = <20>;
+
+		btn1 {
+				label = "btn1";
+				gpios = <&gpio1 6 0>;
+				linux,code = <0x101>;
+		};
+
+		btn2 {
+				label = "btn2";
+				gpios = <&gpio1 9 0>;
+				linux,code = <0x102>;
+		};
+
+		reset {
+				label = "reset";
+				gpios = <&gpio1 12 0>;
+				linux,code = <0x198>;
+		};
+};	
+};
+
+&pinctrl {
+	state_default: pinctrl0 {
+		gpio {
+			ralink,group = "i2c", "gpio", "wled_an" , "perst","refclk","i2s","spis", "wdt","wled_kn";
+			ralink,function = "gpio";
+		};
+	};
+};

@@ -706,6 +706,9 @@ ramips_board_detect() {
 	*"ZBT-WR8305RT")
 		name="zbt-wr8305rt"
 		;;
+	*"UltraIot-PR1")
+		name="UltraIot-PR1"
+		;;
 	*"ZyXEL Keenetic")
 		name="kn"
 		;;
