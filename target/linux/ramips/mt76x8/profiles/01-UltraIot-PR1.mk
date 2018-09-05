@@ -14,7 +14,7 @@ define Profile/UltraIot-PR1
 	kmod-i2c-core kmod-i2c-ralink kmod-nls-base kmod-nls-cp437 kmod-nls-iso8859-1 kmod-nls-utf8 \
 	kmod-usb-storage kmod-usb-storage-extras kmod-usb-uhci \
 	kmod-sound-core kmod-sound-mtk madplay-alsa alsa-utils \
-	luci
+	luci tcpdump
 endef
 
 define Profile/UltraIot-PR1/Description
